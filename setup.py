@@ -12,8 +12,11 @@ setup(
     data_files=[
         ('configuration', ['ansible.cfg', 'configuration/ssdpPlugin.json']),
         ('plugin', ['plugin/ssdpPlugin.py']),
-        ('playbooks', glob('playbooks/*'))
+        ('playbooks', glob('playbooks/*')),
     ],
-    install_requires=['ansible', 'ssdpy',
-                      f'python-context-logger@git+https://github.com/EffectiveRange/python-context-logger.git@latest']
+    install_requires=[
+        'ansible',
+        'ssdpy',
+        'python-context-logger@git+https://github.com/EffectiveRange/python-context-logger.git@latest',
+    ],
 )

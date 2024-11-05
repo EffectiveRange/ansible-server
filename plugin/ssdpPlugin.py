@@ -7,7 +7,6 @@
 import json
 import os.path
 import sys
-import warnings
 from typing import Any, Optional
 
 from ansible.inventory.data import InventoryData
@@ -46,8 +45,12 @@ class InventoryModule(BaseInventoryPlugin):
 
         if self._configuration:
             if logging := self._configuration.get('log'):
-                setup_logging(logging.get('application', 'ansible-server'), logging.get('level', 'INFO'),
-                              logging.get('file'), warn_on_overwrite=False)
+                setup_logging(
+                    logging.get('application', 'ansible-server'),
+                    logging.get('level', 'INFO'),
+                    logging.get('file'),
+                    warn_on_overwrite=False,
+                )
             return True
         else:
             log.error('No valid configuration file found')
