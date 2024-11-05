@@ -1,0 +1,4 @@
+- name: Test Ping
+  hosts: edge_devices
+  tasks:
+    - action: ping

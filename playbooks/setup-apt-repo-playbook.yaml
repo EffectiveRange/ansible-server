@@ -1,0 +1,20 @@
+- name: Setup apt-repo as repository source for edge devices
+  hosts: edge_devices
+  become: true
+  tasks:
+    - name: Add apt-repo as source
+      lineinfile:
+        path: /etc/apt/sources.list.d/effective-range.list
+        state: present
+        create: yes
+        line: deb [arch=armhf] http://er-backend.local:9000 stable main
+
+    - name: Add apt-repo public key
+      apt_key:
+        url: http://er-backend.local:9000/main/dist/public.key
+        state: present
+
+    - name: Update repository cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600

@@ -1,0 +1,25 @@
+{
+  "log": {
+    "application": "ansible-server",
+    "level": "info",
+    "file": "/var/log/effective-range/ansible-server/ansible-server.log"
+  },
+  "groups": [
+    {
+      "name": "edge_devices",
+      "username": "admin",
+      "password": "admin",
+      "usn_filter": "^erid:.*",
+      "nt_filter": "^er:edge:.*",
+      "timeout": 1
+    },
+    {
+      "name": "core_devices",
+      "username": "admin",
+      "password": "admin",
+      "usn_filter": "^erid:.*",
+      "nt_filter": "^er:core:.*",
+      "timeout": 1
+    }
+  ]
+}
