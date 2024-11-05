@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ansible-server-arm64: &ansible-server
+    container_name: ansible-server-arm64
+    build:
+      dockerfile: Dockerfile
+      args:
+        ARCH: arm64v8
+    stdin_open: true
+    tty: true
+    privileged: true
+    network_mode: host
+  ansible-server-amd64:
+    <<: *ansible-server
+    container_name: ansible-server-amd64
+    build:
+      args:
+        ARCH: amd64

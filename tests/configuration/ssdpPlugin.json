@@ -1,0 +1,23 @@
+{
+  "log": {
+    "application": "ansible-server"
+  },
+  "groups": [
+    {
+      "name": "test_devices",
+      "username": "admin",
+      "password": "admin",
+      "usn_filter": "^testid:.*",
+      "nt_filter": "^test:device$",
+      "timeout": 1
+    },
+    {
+      "name": "test_services",
+      "username": "admin",
+      "password": "admin",
+      "usn_filter": "^testid:.*",
+      "nt_filter": "^test:service$",
+      "timeout": 1
+    }
+  ]
+}

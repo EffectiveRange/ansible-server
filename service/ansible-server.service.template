@@ -1,0 +1,18 @@
+[Unit]
+Description=Ansible Server Container
+After=docker.service
+Requires=docker.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker build /etc/ansible-server --tag ferenj/gss-ansible-server-${ARCH}:${TAG} --build-arg ARCH=${DOCKER_ARCH}
+ExecStart=/usr/bin/docker run --net=host --name=ansible-server -v /var/log/effective-range/ansible-server:/var/log/effective-range/ansible-server ferenj/gss-ansible-server-${ARCH}:${TAG} sleep infinity
+ExecStop=/usr/bin/docker kill ansible-server
+ExecStopPost=/usr/bin/docker rm ansible-server
+
+[Install]
+WantedBy=multi-user.target
